@@ -1,0 +1,7 @@
+---
+# python install playbook
+
+- name: install python package
+  sudo: yes
+  action: apt update_cache=yes pkg=python-software-properties state=present
+  tags: [python]

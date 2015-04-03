@@ -1,0 +1,9 @@
+---
+# mongodb install playbook
+
+- name: setup mongodb service
+  service: 
+    name: 'mongod'
+    state: 'started'
+    enabled: yes
+  tags: '[mongodb service setup]'

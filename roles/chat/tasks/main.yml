@@ -1,0 +1,6 @@
+---
+# mongodb install playbook
+
+- include: python.yml
+- include: nodejs.yml
+- include: lets-chat.yml

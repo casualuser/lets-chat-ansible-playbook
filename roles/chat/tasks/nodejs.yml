@@ -1,0 +1,33 @@
+---
+# nodejs install playbook
+
+#- name: 'get nodejs repo key'
+#  apt: update_cache=yes pkg=curl state=present
+#  get_url: 
+#    url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+#    dest: '/home/ubuntu/nodesource.gpg.key'
+#  tags: '[nodejs repo key]'
+
+- name: 'add nodejs repo key'
+  sudo: yes
+  apt_key: 
+    url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+    state: 'present'
+#  action: 'apt-key add /home/ubuntu/nodesource.gpg.key'
+  tags: '[nodejs repo key]'
+
+- name: 'add nodejs repo'
+  sudo: yes
+  apt_repository: 
+    repo: 'deb https://deb.nodesource.com/node_0.12 trusty main'
+    state: 'present'
+#  action: 'curl -sL https://deb.nodesource.com/setup_dev | sudo bash -'
+  tags: '[nodejs repo]'
+
+- name: 'install nodejs packages'
+  sudo: yes
+  action: 'apt update_cache=yes pkg={{item}} state=present'
+  with_items:
+    - nodejs
+    - build-essential
+  tags: '[nodejs]'

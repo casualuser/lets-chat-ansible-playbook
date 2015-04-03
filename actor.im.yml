@@ -1,0 +1,26 @@
+# mongodb install playbook
+---
+
+- name: check servers state
+  hosts: all
+  remote_user: ubuntu
+  sudo: no
+  tags: [common]
+  roles:
+    - common
+
+- name: install mongodb
+  hosts: mongo
+  remote_user: ubuntu
+  sudo: yes
+  tags: [mongodb]
+  roles:
+    - mongo
+
+- name: install lets-chat app
+  hosts: chat
+  remote_user: ubuntu
+  sudo: no
+  tags: [lets-chat]
+  roles:
+    - chat

@@ -1,0 +1,28 @@
+---
+#
+
+- name: 'clone lets-chat repo'
+  git:
+    accept_hostkey: 'true'
+    repo: 'git://github.com/sdelements/lets-chat.git'
+    dest: '{{chat_location}}'
+    update: 'yes'
+  tags: '[lets-chat]'
+
+- name: 'install lets-chat'
+  shell: 'npm install'
+  args:
+    chdir: '{{chat_location}}'
+  tags: '[lets-chat]'
+
+- name: 'deploy lets-chat config file'
+  copy: src={{chat_location}}/settings.yml.sample dest={{chat_location}}/settings.yml mode=0644 owner=ubuntu group=ubuntu
+  tags: '[lets-chat]'
+
+- name: 'tweak lets-chat config file'
+
+
+
+  tags: '[lets-chat]'
+
+# LCB_HTTP_HOST=0.0.0.0 npm start

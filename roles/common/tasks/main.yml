@@ -1,0 +1,22 @@
+---
+#
+
+- name: 'test connection'
+  ping: 
+  tags: '[common]'
+
+- name: 'install git package'
+  sudo: 'yes'
+  apt: 
+    name: 'git'
+    update_cache: 'true'
+    state: 'present'
+  tags: '[git]'
+
+- name: 'install curl package'
+  sudo: 'yes'
+  apt: 
+    name: 'curl'
+    update_cache: 'true'
+    state: 'present'
+  tags: '[curl]'
